@@ -6,7 +6,9 @@
   <title>Hi There!</title>
 </head>
 <body>
-<p>There once was a {{ color }} <span style="color:{{color}}">{{ noun }}</span> sitting in the Hackbright Lab. When {{ person }} went to pick it up, it burst into flames in a totally {{ adj }} way.</p>
+<p>There once was a {{ color }} <span style="color:{{color}}">{{ noun }}</span> sitting in {{place}}. When {{ person }} went to pick it up, it burst into flames in a totally {{ adj }} way.</p>
+
+<p>{{person}} was very {{adj2}} after this experience, so they went to {{places[0]}} {% if places|length > 1 %} and {{places[1]}} {%endif%} {% if places|length > 2 %} and {{places[2]}} {%endif%}.  {{places[0]}} was {{adj3}} and they had to {{verb}} a {{noun2}}.</p>
 
 </body>
 </html>

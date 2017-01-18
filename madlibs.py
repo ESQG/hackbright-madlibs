@@ -1,4 +1,4 @@
-from random import choice
+from random import choice, sample
 
 from flask import Flask, render_template, request
 
@@ -50,16 +50,32 @@ def show_madlib_form():
 
 @app.route('/madlib')
 def show_madlib():
-    person = request.args.get('person', 'Anonymous')
-    color = request.args.get('color', 'purple')
-    noun = request.args.get('noun', 'kitty')
-    adj = request.args.get('adj', 'fluffy')
+    person = request.args.get('person', 'Anonymous').upper()
+    color = request.args.get('color', 'purple').upper()
+    noun = request.args.get('noun', 'kitty').upper()
+    noun2 = request.args.get('noun2', 'umbrella').upper()
+    adj = request.args.get('adj', 'fluffy').upper()
+    adj2 = request.args.get('adj2', 'redoubtable').upper()
+    adj3 = request.args.get('adj3', 'Pythonic').upper()
+    place = request.args.get('place', 'a Magic place').upper()
+    places = request.args.getlist('places') # , ['Starbucks'])
+    verb = request.args.get('verb', 'prognosticate').upper()
 
+    if len(places)>3:
+        places = sample(places, 3)
+    places = [word.upper() for word in places]
     return render_template('madlib.html',
                            person=person,
                            color=color,
+                           adj=adj,
+                           adj2=adj2,
+                           adj3=adj3,
                            noun=noun,
-                           adj=adj)
+                           noun2=noun2,
+                           place=place,
+                           places=places,
+                           verb=verb
+                            )
 
 
 
